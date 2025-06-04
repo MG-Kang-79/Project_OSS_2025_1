@@ -20,7 +20,13 @@ def main():
             except ValueError:
                 print("잘못된 금액입니다.\n")
                 continue
-            budget.add_expense(category, description, amount)
+            
+            payment_method = input("결제 수단 (카드 / 현금): ").strip().lower()
+            if payment_method not in ["카드", "현금"]:
+                print("결제 수단은 '카드' 또는 '현금'만 가능합니다.\n")
+                continue
+            
+            budget.add_expense(category, description, amount, payment_method)
 
         elif choice == "2":
             budget.list_expenses()
@@ -31,7 +37,7 @@ def main():
         elif choice == "4":
             print("가계부를 종료합니다.")
             break
-
+        
         else:
             print("잘못된 선택입니다.\n")
 
